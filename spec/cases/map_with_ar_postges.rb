@@ -8,7 +8,6 @@ Tempfile.open("yyy") do |f|
   ActiveRecord::Base.establish_connection(
       :adapter => 'postgresql',
       :database => database,
-      :username => 'tyler',
       :pool => 5,
       :port => 5432,
       :reconnect => true
