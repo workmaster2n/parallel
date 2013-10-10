@@ -31,11 +31,12 @@ Tempfile.open("yyy") do |f|
   User.create!(:name => "X")
 
   Parallel.map(1..8) do |i|
+    @reconnected ||= User.connection.reconnect! || true
     puts "making user"
-    ActiveRecord::Base.connection.reconnect!
     User.create!(:name => i)
   end
 
+  ActiveRecord::Base.connection.reconnect!
 
   puts "User.count: #{User.count}"
 
